@@ -126,6 +126,7 @@ function docs.highlight_with_treesitter(bufnr, filetype, start_line, end_line)
 
         -- The "conceal" attribute can be set at the pattern level or on a particular capture
         local conceal = metadata.conceal or metadata[capture] and metadata[capture].conceal
+        local conceal_lines = metadata.conceal_lines or metadata[capture] and metadata[capture].conceal_lines
 
         if hl and end_row >= line then
           nvim.buf_set_extmark(bufnr, highlight_ns, start_row, start_col, {
@@ -134,6 +135,7 @@ function docs.highlight_with_treesitter(bufnr, filetype, start_line, end_line)
             hl_group = hl,
             priority = priority,
             conceal = conceal,
+            conceal_lines = conceal_lines,
           } --[[@as vim.api.keyset.set_extmark]])
         end
       end
